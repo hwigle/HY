@@ -7,6 +7,7 @@ public class MathExample {
 		Scanner scn = new Scanner(System.in);
 		int num1, num2, n1, n2, n3, n4, n5;
 		
+		
 		System.out.println("첫 번째 숫자");
 		num1 = scn.nextInt();
 		System.out.println("두 번째 숫자");
