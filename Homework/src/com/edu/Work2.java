@@ -28,6 +28,7 @@ public class Work2 {
 			num3 = tmp;
 		}
 		System.out.println("각 수의 순서는" + num1 + num2 + num3);
+		scn.close();
 	}
 	
 }
