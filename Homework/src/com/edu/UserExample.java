@@ -19,13 +19,19 @@ public class UserExample {
 		u3.setGrade("C");
 		u3.setPhone("010-1111-4444");
 		u3.setPoint(200);
+		
+		User u4 = new User();
+		u3.setId("H90");
+		u3.setGrade("A");
+		u3.setPhone("010-1111-4444");
+		u3.setPoint(1800);
 
 		System.out.println(u3.getUserInfo());
 		
 		User[] users = { u1, u2, u3};
 		
 		for(int i = 0; i < users.length; i++) {
-			if(users[i].getGrade() == "A" && users[i].getPoint() >= 1000) {
+			if(users[i].getGrade().equals("A") && users[i].getPoint() >= 1000) {
 								System.out.println("등급이 A이고 포인트가 1000이상인 유저는 " + users[i].getId() + "입니다.");
 			}
 		}
