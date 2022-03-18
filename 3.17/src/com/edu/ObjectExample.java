@@ -1,5 +1,8 @@
 package com.edu;
 //Object(객체) -> Class(도면, 틀) -> 인스턴스생성(초기화)
+//절차프로그램(함수, 데이터) -> 객체(데이터, 기능(함수))
+//Object(객체) -> Class(도면, 틀) -> 인스턴스생성(초기화)
+//학생(객체:Object) -> Class Student -> instance(new Student())
 public class ObjectExample {
 	public static void main(String[] args) {
 		int num1 = 10;

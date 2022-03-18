@@ -6,6 +6,15 @@ public class Account {
 	private String accName;
 	private int money;
 
+	public static String bankName;
+	static {
+		bankName = "한일은행";
+	}
+	public static void showBankName() {
+		System.out.println("한일은행입니다.");
+	}
+
+	
 	// constructor : 생성자, 목적은 필드의 초기값을 지정.
 	public Account(String accNo, String accName, int money) {
 		super();
@@ -13,6 +22,12 @@ public class Account {
 		this.accName = accName;
 		this.money = money;
 	}
+
+	public Account(String string, String string2) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 
 	public String getAccNo() {
 		return accNo;
