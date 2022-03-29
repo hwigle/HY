@@ -11,7 +11,7 @@ public class SetExample {
 		set.add("Hello");
 		set.add("World");
 		set.add("Good");
-		set.add("World); // 중복된 요소는 추가불가
+		set.add("World"); // 중복된 요소는 추가불가
 		
 		set.remove("Good");
 		System.out.println("set 크기:" + set.size());
