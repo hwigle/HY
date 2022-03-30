@@ -2,9 +2,7 @@ package com.edu.collect;
 
 public class Student {
 	// 학생번호(1,2,3), 이름(홍길동), 영어(80), 국어(85)
-
 	// 생성자: 기본생성자, 매개값이 4개인 생성자.
-
 	// Getter, Setter 생성.
 
 	private String sName;
@@ -16,8 +14,6 @@ public class Student {
 
 	}
 
-	
-
 	public Student(int sNumber, String sName, int eng, int kor) {
 		super();
 		this.sName = sName;
@@ -25,8 +21,6 @@ public class Student {
 		this.eng = eng;
 		this.kor = kor;
 	}
-
-
 
 	public String getsName() {
 		return sName;

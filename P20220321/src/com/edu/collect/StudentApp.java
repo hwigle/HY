@@ -82,8 +82,10 @@ public class StudentApp {
 	} // end of StudentServiceImpl
 
 	public void execute() {
-		StudentService service = new StudentsServiceFile();
-
+		StudentService service = null;
+//				       service = new StudentServiceFile();
+//					   service = new StudentServiceImpl();
+					   service = new StudentServiceOracle();
 		// 메뉴 : 1.추가 2.리스트 3.한건조회 4.수정 5.삭제 6.이름조회 9.종료
 		while (true) {
 			System.out.println("1.추가 2.리스트 3.한건조회 4.수정 5.삭제 6.이름조회 9.종료");
@@ -118,14 +120,17 @@ public class StudentApp {
 				} else {
 					System.out.println(student.toString());
 				}
-			} else if (menu == 4) {
+			} else if (menu == 4) { // 수정
+				
 				System.out.println("수정할 학생번호를 입력하세요.");
+//				s1.setsNumber(scn.nextInt());
 				int sNumber = scn.nextInt();
 				System.out.println("영어 점수를 입력하세요.");
+//				s1.setEng(scn.nextInt());
 				int eng = scn.nextInt();
 				System.out.println("국어 점수를 입력하세요.");
+//				s1.setKor(scn.nextInt());
 				int kor = scn.nextInt();
-
 				Student s1 = new Student(sNumber, null, eng, kor);
 				service.modifyStudent(s1);
 				System.out.println("처리가 완료되었습니다.");
