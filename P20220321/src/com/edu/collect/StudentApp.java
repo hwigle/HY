@@ -85,7 +85,7 @@ public class StudentApp {
 		StudentService service = null;
 //				       service = new StudentServiceFile();
 //					   service = new StudentServiceImpl();
-					   service = new StudentServiceOracle();
+		service = new StudentServiceOracle();
 		// 메뉴 : 1.추가 2.리스트 3.한건조회 4.수정 5.삭제 6.이름조회 9.종료
 		while (true) {
 			System.out.println("1.추가 2.리스트 3.한건조회 4.수정 5.삭제 6.이름조회 9.종료");
@@ -121,7 +121,7 @@ public class StudentApp {
 					System.out.println(student.toString());
 				}
 			} else if (menu == 4) { // 수정
-				
+
 				System.out.println("수정할 학생번호를 입력하세요.");
 //				s1.setsNumber(scn.nextInt());
 				int sNumber = scn.nextInt();
@@ -144,10 +144,13 @@ public class StudentApp {
 			} else if (menu == 6) {
 				System.out.println("조회할 학생의 이름을 입력하세요.");
 				String serachName = scn.next();
-
+				
 				List<Student> list = service.searchStudent(serachName);
-				for (Student s : list) {
-					System.out.println(s.toString());
+				if (list == null) {
+					System.out.println("없는 학생번호 입니다.");
+				} else {
+					System.out.println(list.toString());
+
 				}
 			} else if (menu == 9) {
 				System.out.println("프로그램을 종료합니다.");

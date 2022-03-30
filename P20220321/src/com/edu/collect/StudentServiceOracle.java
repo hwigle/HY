@@ -33,13 +33,13 @@ public class StudentServiceOracle extends DAO implements StudentService {
 			psmt = conn.prepareStatement("select*from student_info where student_no = ?");
 			psmt.setInt(1, sno);
 			rs = psmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				std = new Student();
 				std.setsNumber(rs.getInt("student_no"));
 				std.setsName(rs.getString("student_name"));
 				std.setEng(rs.getInt("eng_score"));
 				std.setKor(rs.getInt("kor_score"));
-				
+
 			}
 
 		} catch (SQLException e) {
@@ -111,7 +111,27 @@ public class StudentServiceOracle extends DAO implements StudentService {
 
 	@Override
 	public List<Student> searchStudent(String sName) {
-		return null;
+		List<Student> list = new ArrayList<Student>();
+		conn = getConnect();
+		Student std = null;
+		try {
+			psmt = conn.prepareStatement("select*from student_info where student_name = ?");
+			psmt.setString(1, sName);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				std = new Student();
+				std.setsNumber(rs.getInt("student_no"));
+				std.setsName(rs.getString("student_name"));
+				std.setEng(rs.getInt("eng_score"));
+				std.setKor(rs.getInt("kor_score"));
+				list.add(std);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
 	}
 
 	@Override
