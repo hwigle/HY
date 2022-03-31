@@ -10,76 +10,76 @@ public class StudentApp {
 	Scanner scn = new Scanner(System.in);
 
 	// 생성자
-	public StudentApp() {
-		list.add(new Student(101, "권가희", 50, 60));
-		list.add(new Student(102, "유해정", 70, 80));
-		list.add(new Student(103, "이유빈", 90, 70));
-		list.add(new Student(104, "권가희", 50, 60));
-	}
+//	public StudentApp() {
+//		list.add(new Student(101, "권가희", 50, 60));
+//		list.add(new Student(102, "유해정", 70, 80));
+//		list.add(new Student(103, "이유빈", 90, 70));
+//		list.add(new Student(104, "권가희", 50, 60));
+//	}
 
 	// 멤버클래스.
-	class StudentsServiceFile implements StudentService {
-
-		@Override
-		public void insertStudent(Student student) {
-			list.add(student); // 추가.
-		}
-
-		@Override
-		public Student getStudent(int sno) { // 학생번호로 한건 조회
-			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getsNumber() == sno) {
-					return list.get(i);
-				}
-			}
-			return null;
-		}
-
-		@Override
-		public List<Student> studentList() { // 전체 리스트
-			return list;
-		}
-
-		@Override
-		public void modifyStudent(Student student) { // 수정
-			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getsNumber() == student.getsNumber()) {
-					list.get(i).setEng(student.getEng()); // 영어 점수 수정
-					list.get(i).setKor(student.getKor()); // 국어 점수 수정
-				}
-			}
-		}
-
-		@Override
-		public void removeStudent(int sno) {
-			for (int i = 0; i < list.size(); i++) {
-				if (list.get(i).getsNumber() == sno) {
-					list.remove(i);
-				}
-			}
-
-		}
-
-		@Override
-		public List<Student> searchStudent(String sName) {
-			List<Student> searchList = new ArrayList<Student>();
-			// 찾았다고 종료X
-			for (int i = 0; i < list.size(); i++) {
-				// 같은 이름이 있는지 찾아보고 있으면 searchList.add();
-				if (list.get(i).getsName().equals(sName)) {
-					searchList.add(list.get(i));
-
-				}
-			}
-			return searchList;
-
-		}
-
-		@Override
-		public void saveToFile() {
-			System.exit(0);
-		}
-	} // end of StudentServiceImpl
+//	class StudentsServiceFile implements StudentService {
+//
+//		@Override
+//		public void insertStudent(Student student) {
+//			list.add(student); // 추가.
+//		}
+//
+//		@Override
+//		public Student getStudent(int sno) { // 학생번호로 한건 조회
+//			for (int i = 0; i < list.size(); i++) {
+//				if (list.get(i).getsNumber() == sno) {
+//					return list.get(i);
+//				}
+//			}
+//			return null;
+//		}
+//
+//		@Override
+//		public List<Student> studentList() { // 전체 리스트
+//			return list;
+//		}
+//
+//		@Override
+//		public void modifyStudent(Student student) { // 수정
+//			for (int i = 0; i < list.size(); i++) {
+//				if (list.get(i).getsNumber() == student.getsNumber()) {
+//					list.get(i).setEng(student.getEng()); // 영어 점수 수정
+//					list.get(i).setKor(student.getKor()); // 국어 점수 수정
+//				}
+//			}
+//		}
+//
+//		@Override
+//		public void removeStudent(int sno) {
+//			for (int i = 0; i < list.size(); i++) {
+//				if (list.get(i).getsNumber() == sno) {
+//					list.remove(i);
+//				}
+//			}
+//
+//		}
+//
+//		@Override
+//		public List<Student> searchStudent(String sName) {
+//			List<Student> searchList = new ArrayList<Student>();
+//			// 찾았다고 종료X
+//			for (int i = 0; i < list.size(); i++) {
+//				// 같은 이름이 있는지 찾아보고 있으면 searchList.add();
+//				if (list.get(i).getsName().equals(sName)) {
+//					searchList.add(list.get(i));
+//
+//				}
+//			}
+//			return searchList;
+//
+//		}
+//
+//		@Override
+//		public void saveToFile() {
+//			System.exit(0);
+//		}
+//	} // end of StudentServiceImpl
 
 	public void execute() {
 		StudentService service = null;
