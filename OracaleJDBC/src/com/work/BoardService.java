@@ -10,6 +10,6 @@ public interface BoardService {
 	public List<Board> boardList(); // 전체 게시글 조회
 	public Board getBoard(int bno); // 게시글 한건 조회(게시글번호로)
 	public void deleteBoard(int bno);
-	
+			
 
 }

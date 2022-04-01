@@ -23,7 +23,7 @@ public class DAO {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("연결성공");
+//		System.out.println("연결성공");
 		return conn;
 
 	}

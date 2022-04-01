@@ -8,14 +8,14 @@ import java.util.Date;
 public class DateExample {
 	public static void main(String[] args) {
 
-		Date today = new Date("2022/01/01 00:00:00");
-		today.setYear(120);
-		System.out.println(today);
+		Date today = new Date();
+//		today.setYear(120);
+//		System.out.println(today);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년MM월dd일 hh시mm분ss초");
 		System.out.println(sdf.format(today));
 
-		LocalDateTime time = LocalDateTime.now();
-		System.out.println(time.getYear()+"년");		
+//		LocalDateTime time = LocalDateTime.now();
+//		System.out.println(time.getYear()+"년");		
 	}
 }

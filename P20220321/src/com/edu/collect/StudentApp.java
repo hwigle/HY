@@ -13,7 +13,7 @@ public class StudentApp {
 //	public StudentApp() {
 //		list.add(new Student(101, "권가희", 50, 60));
 //		list.add(new Student(102, "유해정", 70, 80));
-//		list.add(new Student(103, "이유빈", 90, 70));
+//		list.add(new Student(103, "이유빈", 100, 100));
 //		list.add(new Student(104, "권가희", 50, 60));
 //	}
 

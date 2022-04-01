@@ -9,7 +9,8 @@ public class StudentServiceOracle extends DAO implements StudentService {
 	@Override
 	public void insertStudent(Student student) {
 		conn = getConnect();
-		String sql = "insert into student_info(student_no, student_name, eng_score, kor_score)\r\n"
+		String sql = "insert into student_info(student_no, "
+				+ "student_name, eng_score, kor_score)\r\n"
 				+ "values (?, ?, ?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -30,7 +31,8 @@ public class StudentServiceOracle extends DAO implements StudentService {
 		conn = getConnect();
 		Student std = null;
 		try {
-			psmt = conn.prepareStatement("select*from student_info where student_no = ?");
+			psmt = conn.prepareStatement("select*from student_info "
+					+ "where student_no = ?");
 			psmt.setInt(1, sno);
 			rs = psmt.executeQuery();
 			if (rs.next()) {
@@ -78,7 +80,8 @@ public class StudentServiceOracle extends DAO implements StudentService {
 	@Override
 	public void modifyStudent(Student student) {
 		conn = getConnect();
-		String sql = "update student_info set eng_score = ?, " + "kor_score = ?" + "where student_no = ?";
+		String sql = "update student_info set eng_score = ?, " 
+		+ "kor_score = ?" + "where student_no = ?";
 
 		try {
 			psmt = conn.prepareStatement(sql);

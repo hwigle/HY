@@ -22,11 +22,16 @@ public class Board {
 		this.bdate = bdate;
 		this.bpassword = bpassword;
 	}
-	
+
 	public Board(int bno, String btitle, String bcontents, int bpassword) {
 		this.bno = bno;
 		this.btitle = btitle;
 		this.bcontents = bcontents;
+		this.bpassword = bpassword;
+	}
+	
+	public Board(int bno, int bpassword) {
+		this.bno = bno;
 		this.bpassword = bpassword;
 	}
 
@@ -66,8 +71,8 @@ public class Board {
 		return bdate;
 	}
 
-	public void setBdate(String bdate) {
-		this.bdate = bdate;
+	public String setBdate(String bdate) {
+		return this.bdate = bdate;
 	}
 
 	public int getBpassword() {
@@ -80,8 +85,10 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "Board [게시글 번호: " + bno + ", 게시글제목: " + btitle + ", 게시글내용: " + bcontents + ", 작성자: " + bwriter
-				+ ", 작성일: " + bdate;
+		return "======================================================================================================\n"
+				+"자유게시판 " 	+ "|"+bno+"|"+ " [게시글제목: " + btitle + "] "	
+				+ "[작성자 : " + bwriter +"] [작성일 : " + bdate +"] " 
+				+ "\n        게시글내용: " + bcontents + "\n======================================================================================================\n";
 	}
 
 }
