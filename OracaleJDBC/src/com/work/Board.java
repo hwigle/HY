@@ -29,7 +29,7 @@ public class Board {
 		this.bcontents = bcontents;
 		this.bpassword = bpassword;
 	}
-	
+
 	public Board(int bno, int bpassword) {
 		this.bno = bno;
 		this.bpassword = bpassword;
@@ -86,9 +86,9 @@ public class Board {
 	@Override
 	public String toString() {
 		return "======================================================================================================\n"
-				+"자유게시판 " 	+ "|"+bno+"|"+ " [게시글제목: " + btitle + "] "	
-				+ "[작성자 : " + bwriter +"] [작성일 : " + bdate +"] " 
-				+ "\n        게시글내용: " + bcontents + "\n======================================================================================================\n";
+				+ "자유게시판 " + "|" + bno + "|" + " [게시글제목: " + btitle + "] " + "[작성자 : " + bwriter + "] [작성일 : " + bdate
+				+ "] \n" + bcontents
+				+ "\n======================================================================================================\n";
 	}
 
 }

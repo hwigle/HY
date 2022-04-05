@@ -9,8 +9,9 @@ public class BoardServiceOracle extends DAO implements BoardService {
 	@Override // 등록
 	public void insertBoard(Board board) {
 		conn = getConnect();
-		String sql = "insert into board_info(b_no, b_title, b_contents, " + "b_writer, b_date, b_password) "
-				+ " values (?, ?, ?, ?, ?, ?)";
+		String sql = "insert into board_info(b_no, b_title, b_contents, " 
+					+ "b_writer, b_date, b_password) "
+					+ " values (?, ?, ?, ?, ?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, board.getBno());
@@ -21,7 +22,7 @@ public class BoardServiceOracle extends DAO implements BoardService {
 			psmt.setInt(6, board.getBpassword());
 
 			int r = psmt.executeUpdate();
-//			System.out.println(r + "건 추가됨.");
+			System.out.println(r + "건 추가됨.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -42,7 +43,7 @@ public class BoardServiceOracle extends DAO implements BoardService {
 			psmt.setInt(4, board.getBno());
 
 			int r = psmt.executeUpdate();
-//			System.out.println(r + "건 수정됨.");
+			System.out.println(r + "건 수정됨.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -57,7 +58,7 @@ public class BoardServiceOracle extends DAO implements BoardService {
 			psmt.setInt(1, board.getBno());
 			psmt.setInt(2, board.getBpassword());
 			int r = psmt.executeUpdate();
-//			System.out.println(r + "건 삭제됨.");
+			System.out.println(r + "건 삭제됨.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
