@@ -30,6 +30,8 @@ public class Board {
 		this.bpassword = bpassword;
 	}
 
+	
+
 	public Board(int bno, int bpassword) {
 		this.bno = bno;
 		this.bpassword = bpassword;

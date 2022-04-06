@@ -9,9 +9,8 @@ public class BoardServiceOracle extends DAO implements BoardService {
 	@Override // 등록
 	public void insertBoard(Board board) {
 		conn = getConnect();
-		String sql = "insert into board_info(b_no, b_title, b_contents, " 
-					+ "b_writer, b_date, b_password) "
-					+ " values (?, ?, ?, ?, ?, ?)";
+		String sql = "insert into board_info(b_no, b_title, b_contents, " + "b_writer, b_date, b_password) "
+				+ " values (?, ?, ?, ?, ?, ?)";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, board.getBno());
@@ -26,6 +25,25 @@ public class BoardServiceOracle extends DAO implements BoardService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override // 댓글 작성
+	public void insertReply(Reply reply) {
+		conn = getConnect();
+		String sql = "insert into reply_info(r_no, r_contents, r_writer, r_date, b_no) " + "values(?,?,?,?,?) ";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, reply.getR_no());
+			psmt.setString(2, reply.getR_contents());
+			psmt.setString(3, reply.getR_writer());
+			psmt.setString(4, reply.getR_date());
+			psmt.setInt(5, reply.getB_no());
+			int r = psmt.executeUpdate();
+			System.out.println(r + "건 작성됨.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	@Override // 수정
@@ -117,9 +135,80 @@ public class BoardServiceOracle extends DAO implements BoardService {
 		return bod;
 	}
 
-	@Override
-	public void deleteBoard(int bno) {
+	@Override // 댓글조회
+	public List<Reply> replyList(int bno) {
+		List<Reply> list = new ArrayList<Reply>();
+		conn = getConnect();
+		try {
+			psmt = conn.prepareStatement("select* from reply_info where b_no = ?");
+			psmt.setInt(1, bno);
+			rs = psmt.executeQuery();
 
+			while (rs.next()) {
+				Reply reply = new Reply();
+				reply.setR_no(rs.getInt("r_no"));
+				reply.setR_contents(rs.getString("r_contents"));
+				reply.setR_writer(rs.getString("r_writer"));
+				reply.setR_date(rs.getString("r_date"));
+				reply.setB_no(rs.getInt("b_no"));
+				list.add(reply);
+			}
+//			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
+	}
+
+	@Override // 게시글 번호
+	public int getMaxnum() {
+		conn = getConnect();
+		int b_no = 0;
+		try {
+			psmt = conn.prepareStatement("select max(b_no) from board_info");
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				b_no = rs.getInt("max(b_no)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return b_no;
+	}
+
+	@Override // 댓글 번호
+	public int getMaxnum2() {
+		conn = getConnect();
+		int r_no = 0;
+		try {
+			psmt = conn.prepareStatement("select max(r_no) from reply_info");
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				r_no = rs.getInt("max(r_no)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return r_no;
+	}
+
+	@Override // 댓글삭제
+	public void deleteReply(int reply) {
+		conn = getConnect();
+		String sql = "delete from reply_info where r_no = ? ";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, reply);
+			int r = psmt.executeUpdate();
+			System.out.println(r + "건 삭제됨.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
