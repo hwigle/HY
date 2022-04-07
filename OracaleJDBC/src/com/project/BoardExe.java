@@ -1,4 +1,4 @@
-package com.work;
+package com.project;
 
 public class BoardExe {
 	public static void main(String[] args) {

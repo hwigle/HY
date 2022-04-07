@@ -1,4 +1,4 @@
-package com.work;
+package com.project;
 
 public class Board {
 
@@ -29,8 +29,6 @@ public class Board {
 		this.bcontents = bcontents;
 		this.bpassword = bpassword;
 	}
-
-	
 
 	public Board(int bno, int bpassword) {
 		this.bno = bno;
@@ -89,7 +87,7 @@ public class Board {
 	public String toString() {
 		return "======================================================================================================\n"
 				+ "자유게시판 " + "|" + bno + "|" + " [게시글제목: " + btitle + "] " + "[작성자 : " + bwriter + "] [작성일 : " + bdate
-				+ "] \n" + bcontents
+				+ "] \n" + "\n         " + bcontents
 				+ "\n======================================================================================================\n";
 	}
 

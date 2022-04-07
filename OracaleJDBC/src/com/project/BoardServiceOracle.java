@@ -1,4 +1,4 @@
-package com.work;
+package com.project;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class BoardServiceOracle extends DAO implements BoardService {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override // 댓글 작성
 	public void insertReply(Reply reply) {
 		conn = getConnect();
@@ -67,6 +67,25 @@ public class BoardServiceOracle extends DAO implements BoardService {
 		}
 	}
 
+	@Override // 댓글 수정
+	public void modifyReply(Reply reply) {
+		conn = getConnect();
+		String sql = "update reply_info set r_contents = ?, r_date = ? where b_no = ? and r_no = ? ";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, reply.getR_contents());
+			psmt.setString(2, reply.getR_date());
+			psmt.setInt(3, reply.getB_no());
+			psmt.setInt(4, reply.getR_no());
+
+			int r = psmt.executeUpdate();
+			System.out.println(r + "건 수정됨.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	@Override // 삭제
 	public void deleteBoard(Board board) {
 		conn = getConnect();
@@ -81,6 +100,21 @@ public class BoardServiceOracle extends DAO implements BoardService {
 			e.printStackTrace();
 		}
 
+	}
+
+	@Override // 댓글 삭제
+	public void deleteReply(Reply reply) {
+		conn = getConnect();
+		String sql = "delete from reply_info where r_no = ? and b_no = ? ";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, reply.getR_no());
+			psmt.setInt(2, reply.getB_no());
+			int r = psmt.executeUpdate();
+			System.out.println(r + "건 삭제됨.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override // 전체조회
@@ -195,20 +229,6 @@ public class BoardServiceOracle extends DAO implements BoardService {
 			e.printStackTrace();
 		}
 		return r_no;
-	}
-
-	@Override // 댓글삭제
-	public void deleteReply(int reply) {
-		conn = getConnect();
-		String sql = "delete from reply_info where r_no = ? ";
-		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, reply);
-			int r = psmt.executeUpdate();
-			System.out.println(r + "건 삭제됨.");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 
 }

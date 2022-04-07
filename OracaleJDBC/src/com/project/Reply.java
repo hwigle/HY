@@ -1,4 +1,4 @@
-package com.work;
+package com.project;
 
 public class Reply {
 	private int r_no;
@@ -17,6 +17,18 @@ public class Reply {
 
 	}
 
+	Reply(int r_no, int b_no) {
+		this.r_no = r_no;
+		this.b_no = b_no;
+	}
+
+	Reply(int r_no, String r_contents, String r_date, int b_no) {
+		this.r_no = r_no;
+		this.r_contents = r_contents;
+		this.r_date =r_date;
+		this.b_no = b_no;
+	}
+
 	Reply(int r_no, String r_contents, String r_writer, String r_date, int b_no) {
 		this.r_no = r_no;
 		this.r_contents = r_contents;
@@ -25,7 +37,6 @@ public class Reply {
 		this.b_no = b_no;
 	}
 
-	
 	public int getR_no() {
 		return r_no;
 	}

@@ -1,4 +1,4 @@
-package com.work;
+package com.project;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,7 +12,6 @@ public class BoardApp {
 	Scanner scn = new Scanner(System.in);
 
 	public BoardApp() {
-
 	}
 
 	public void execute() {
@@ -26,20 +25,19 @@ public class BoardApp {
 
 		// 메뉴 1.게시글등록 2.게시글수정 3.게시글삭제 4.게시글 전체조회 5.게시글 한건조회(게시글번호로)
 		while (true) {
-			System.out.println("1.게시글 등록 2.게시글 수정 3.게시글 삭제 4.게시글 리스트 5.게시글 보기 6.댓글 작성 7.댓글 삭제 8.게시판 닫기");
+			System.out.println("1.게시글 등록 2.게시글 수정 3.게시글 삭제 4.게시글 리스트 5.게시글 보기 6.댓글 작성 7.댓글 수정 8.댓글 삭제 9.게시판 닫기");
 			System.out.println("선택>> ");
 
 			int menu = scn.nextInt();
 			if (menu == 1) {
 				Board a1 = new Board();
-//				System.out.println("게시글 번호를 입력하세요.");
-//				int bno = scn.nextInt();
+				scn.nextLine();
 				System.out.println("게시글 제목을 입력하세요.");
-				String btitle = scn.next();
+				String btitle = scn.nextLine();
 				System.out.println("게시글 내용을 입력하세요.");
-				String bcontents = scn.next();
+				String bcontents = scn.nextLine();
 				System.out.println("게시글 작성자를 입력하세요.");
-				String bwriter = scn.next();
+				String bwriter = scn.nextLine();
 				String bdate = a1.setBdate(date);
 				System.out.println("게시글 비밀번호를 입력하세요.");
 				int bpassword = scn.nextInt();
@@ -51,13 +49,15 @@ public class BoardApp {
 				System.out.println("수정할 게시글의 번호를 입력하세요.");
 				int bno = scn.nextInt();
 				Board board = service.getBoard(bno);
+
 				if (board == null) {
 					System.out.println("없는 게시글 번호입니다.");
 				} else {
+					scn.nextLine();
 					System.out.println("수정할 제목을 입력하세요.");
-					String btitle = scn.next();
+					String btitle = scn.nextLine();
 					System.out.println("수정할 내용을 입력하세요.");
-					String bcontents = scn.next();
+					String bcontents = scn.nextLine();
 					System.out.println("비밀번호를 입력하세요.");
 					int bpassword = scn.nextInt();
 					Board b1 = new Board(bno, btitle, bcontents, bpassword);
@@ -65,6 +65,7 @@ public class BoardApp {
 					System.out.println("게시글 수정이 완료되었습니다.");
 				}
 			} else if (menu == 3) {
+
 				System.out.println("삭제할 게시글의 번호를 입력하세요.");
 				int bno = scn.nextInt();
 				Board board = service.getBoard(bno);
@@ -81,7 +82,7 @@ public class BoardApp {
 				List<Board> list = service.boardList();
 				for (Board b : list) {
 					System.out.println(
-							b.getBno() + "." + b.getBtitle() + " " + b.getBwriter() + " " + b.getBdate() + " ");
+							b.getBno() + "." + b.getBtitle() + " " + b.getBwriter() + " " + b.getBdate() + " "+"\n------------------------------------------------");
 				}
 			} else if (menu == 5) {
 				System.out.println("조회할 게시글의 번호를 입력하세요.");
@@ -91,15 +92,73 @@ public class BoardApp {
 					System.out.println("없는 게시글 번호입니다.");
 				} else {
 					System.out.println(board.toString());
+					System.out.println("댓글창\n");
 					List<Reply> reply = service.replyList(bno);
 					for (Reply r : reply) {
-						System.out.println("<" + r.getR_no() + "> " + r.getR_writer() + " " + r.getR_date() + "\n"
-								+ r.getR_contents());
+						System.out.println("|" + r.getR_no() + "|" + "[작성자: " + r.getR_writer() + "]" + " "
+								+ r.getR_date() + "\n         " + r.getR_contents()
+								+ "\n==================================================");
+//						while (true) {
+//							System.out.println("1.댓글 작성 2.댓글 수정 3.댓글 삭제 4.나가기");
+//							int select = scn.nextInt();
+//							if (select == 1) {
+//								scn.nextLine();
+//								Board a1 = new Board();
+//								System.out.println("댓글 내용을 입력하세요.");
+//								String r_contents = scn.nextLine();
+//								System.out.println("댓글 작성자를 입력하세요.");
+//								String r_writer = scn.nextLine();
+//								String r_date = a1.setBdate(date);
+//								Reply r1 = new Reply(r_num, r_contents, r_writer, r_date, bno);
+//								r_num++;
+//								service.insertReply(r1);
+//							} else if (select == 2) {
+//								System.out.println("댓글을 수정할 게시글의 번호를 입력하세요.");
+//								int b_no = scn.nextInt();
+//								Board board1 = service.getBoard(bno);
+//								if (board == null) {
+//									System.out.println("없는 게시글 번호입니다.");
+//								} else {
+//									System.out.println("수정할 댓글의 번호를 입력하세요.");
+//									int r_no = scn.nextInt();
+//									System.out.println("수정할 댓글의 내용을 입력하세요.");
+//									String r_contents = scn.next();
+//									String r_date = date;
+//									Reply r1 = new Reply(r_no, r_contents, r_date, bno);
+//									service.modifyReply(r1);
+//									System.out.println("댓글 수정이 완료되었습니다.");
+//								}
+//
+//							} else if (select == 3) {
+//								System.out.println("댓글을 삭제할 게시글의 번호를 입력하세요.");
+//								int b_no = scn.nextInt();
+//								Board board1 = service.getBoard(bno);
+//								if (board == null) {
+//									System.out.println("없는 게시글 번호입니다.");
+//								} else {
+//									System.out.println("삭제할 댓글의 번호를 입력하세요.");
+//									int r_no = scn.nextInt();
+//									Reply r1 = new Reply(r_no, bno);
+//									service.deleteReply(r1);
+//									System.out.println("댓글이 삭제되었습니다.");
+//								}
+//							} else if (select == 4) {
+//								break;
+//
+//							} else if (menu == 9) {
+//								System.out.println("게시판을 닫았습니다.");
+//								break;
+//
+//							}
+//							System.out.println("end of prog");
+//						}
+//					}
 
 					}
 				}
 			} else if (menu == 6) {
 				Board a1 = new Board();
+				scn.nextLine();
 				System.out.println("댓글을 작성할 게시글의 번호를 입력하세요.");
 				int bno = scn.nextInt();
 				Board board = service.getBoard(bno);
@@ -107,17 +166,35 @@ public class BoardApp {
 					System.out.println("없는 게시글 번호입니다.");
 				} else {
 					// 댓글 작성
+					scn.nextLine();
 					System.out.println("댓글 내용을 입력하세요.");
-					String r_contents = scn.next();
+					String r_contents = scn.nextLine();
 					System.out.println("댓글 작성자를 입력하세요.");
-					String r_writer = scn.next();
+					String r_writer = scn.nextLine();
 					String r_date = a1.setBdate(date);
-					int b_no = 0;
-					Reply r1 = new Reply(r_num, r_contents, r_writer, r_date, b_no);
-					b_num++;
+					Reply r1 = new Reply(r_num, r_contents, r_writer, r_date, bno);
+					r_num++;
 					service.insertReply(r1);
 				}
 			} else if (menu == 7) {
+				System.out.println("댓글을 수정할 게시글의 번호를 입력하세요.");
+				int bno = scn.nextInt();
+				Board board = service.getBoard(bno);
+				if (board == null) {
+					System.out.println("없는 게시글 번호입니다.");
+				} else {
+					
+					System.out.println("수정할 댓글의 번호를 입력하세요.");
+					int r_no = scn.nextInt();
+					System.out.println("수정할 댓글의 내용을 입력하세요.");
+					String r_contents = scn.nextLine();
+					String r_date = date;
+					Reply r1 = new Reply(r_no, r_contents, r_date, bno);
+					service.modifyReply(r1);
+					System.out.println("댓글 수정이 완료되었습니다.");
+				}
+
+			} else if (menu == 8) {
 				System.out.println("댓글을 삭제할 게시글의 번호를 입력하세요.");
 				int bno = scn.nextInt();
 				Board board = service.getBoard(bno);
@@ -126,10 +203,11 @@ public class BoardApp {
 				} else {
 					System.out.println("삭제할 댓글의 번호를 입력하세요.");
 					int r_no = scn.nextInt();
-					service.deleteReply(r_no);
+					Reply r1 = new Reply(r_no, bno);
+					service.deleteReply(r1);
 					System.out.println("댓글이 삭제되었습니다.");
 				}
-			} else if (menu == 8) {
+			} else if (menu == 9) {
 				System.out.println("게시판을 닫았습니다.");
 				break;
 			}
