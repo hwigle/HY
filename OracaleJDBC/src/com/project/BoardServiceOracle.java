@@ -46,7 +46,7 @@ public class BoardServiceOracle extends DAO implements BoardService {
 
 	}
 
-	@Override // 수정
+	@Override // 게시글 수정
 	public void modifyBoard(Board board) {
 		conn = getConnect();
 		String sql = "update board_info set b_title = ?, b_contents = ?, b_password = ? where b_no = ?";
@@ -70,7 +70,7 @@ public class BoardServiceOracle extends DAO implements BoardService {
 	@Override // 댓글 수정
 	public void modifyReply(Reply reply) {
 		conn = getConnect();
-		String sql = "update reply_info set r_contents = ?, r_date = ? where b_no = ? and r_no = ? ";
+		String sql = "update reply_info set r_contents = ?, r_date = ? " + "where b_no = ? and r_no = ? ";
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, reply.getR_contents());
@@ -86,7 +86,7 @@ public class BoardServiceOracle extends DAO implements BoardService {
 
 	}
 
-	@Override // 삭제
+	@Override // 게시글 삭제
 	public void deleteBoard(Board board) {
 		conn = getConnect();
 		String sql = "delete from board_info where b_no = ? and b_password = ? ";
@@ -161,6 +161,7 @@ public class BoardServiceOracle extends DAO implements BoardService {
 				bod.setBwriter(rs.getString("b_writer"));
 				bod.setBdate(rs.getString("b_date"));
 			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
