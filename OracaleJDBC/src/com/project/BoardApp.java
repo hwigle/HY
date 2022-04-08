@@ -25,10 +25,11 @@ public class BoardApp {
 
 		// 메뉴 1.게시글등록 2.게시글수정 3.게시글삭제 4.게시글 전체조회 5.게시글 한건조회(게시글번호로)
 		while (true) {
-			System.out.println("1.게시글 등록 2.게시글 수정 3.게시글 삭제 4.게시글 리스트 5.게시글 보기 9.게시판 닫기");
+			System.out.println("1.게시글 등록 2.게시글 수정 3.게시글 삭제 4.게시글 리스트 5.게시글 보기 6.게시판 닫기");
 			System.out.println("선택>> ");
 
 			int menu = scn.nextInt();
+			
 			if (menu == 1) {
 				Board a1 = new Board();
 				scn.nextLine();
@@ -87,6 +88,7 @@ public class BoardApp {
 			} else if (menu == 5) {
 				System.out.println("조회할 게시글의 번호를 입력하세요.");
 				int bno = scn.nextInt();
+				
 				Board board = service.getBoard(bno);
 				if (board == null) {
 					System.out.println("없는 게시글 번호입니다.");
@@ -121,32 +123,32 @@ public class BoardApp {
 //							System.out.println("댓글을 수정할 게시글의 번호를 입력하세요.");
 //							bno = scn.nextInt();
 ////							Board board = service.getBoard(bno);
-//							if (board == null) {
-//								System.out.println("없는 게시글 번호입니다.");
-//								continue;
-//							} else {
-
-							System.out.println("수정할 댓글의 번호를 입력하세요.");
-							int r_no = scn.nextInt();
-							System.out.println("수정할 댓글의 내용을 입력하세요.");
-							String r_contents = scn.next();
-							String r_date = date;
-							Reply r1 = new Reply(r_no, r_contents, r_date, bno);
-							service.modifyReply(r1);
-							System.out.println("댓글 수정이 완료되었습니다.");
-
+							if (board == null) {
+								System.out.println("없는 게시글 번호입니다.");
+								continue;
+							} else {
+								System.out.println("수정할 댓글의 번호를 입력하세요.");
+								int r_no = scn.nextInt();
+								scn.nextLine();
+								System.out.println("수정할 댓글의 내용을 입력하세요.");
+								String r_contents = scn.nextLine();
+								String r_date = date;
+								Reply r1 = new Reply(r_no, r_contents, r_date, bno);
+								service.modifyReply(r1);
+								System.out.println("댓글 수정이 완료되었습니다.");
+							}
 						} else if (select == 3) {
 //							System.out.println("댓글을 삭제할 게시글의 번호를 입력하세요.");
 //							bno = scn.nextInt();
-//							if (board == null) {
-//								System.out.println("없는 게시글 번호입니다.");
-//							} else {
-							System.out.println("삭제할 댓글의 번호를 입력하세요.");
-							int r_no = scn.nextInt();
-							Reply r1 = new Reply(r_no, bno);
-							service.deleteReply(r1);
-							System.out.println("댓글이 삭제되었습니다.");
-
+							if (board == null) {
+								System.out.println("없는 게시글 번호입니다.");
+							} else {
+								System.out.println("삭제할 댓글의 번호를 입력하세요.");
+								int r_no = scn.nextInt();
+								Reply r1 = new Reply(r_no, bno);
+								service.deleteReply(r1);
+								System.out.println("댓글이 삭제되었습니다.");
+							}
 						} else if (select == 4) {
 							break;
 						}
