@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax/fetch</title>
+<script src="ajax.js"></script>
+</head>
+<body>
+   <script>
+	// Ajax => XMLHttpRequest: => fetch();
+	let xhtp = new XMLHttpRequest();
+	xhtp.open('get', '../studentList.json');
+	xhtp.send();
+	xhtp.onload = function(){
+	 console.log('xmlhttprequest')
+	 console.log(xhtp.response)
+	}	
+	
+	fetch('../studentList.json') // 불러올 주소
+	   .then(function(result){ // 정상 실행할 함수
+	   		let val = result.json(); // json 객체로 바꿈	   		
+	   		return val;
+	   }) 
+	   .then(function(result){ // 정상 실행할 함수
+	   		console.log(result);
+	   })	   		
+	   .catch(function(error){ // 에러 발생 시 실행할 함수
+	   		console.log(error);
+	   })
+   </script>
+</body>
+</html>

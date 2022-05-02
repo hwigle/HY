@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax/fetch.html</title>
+</head>
+<body> 
+ <button id='selDel'>선택삭제</button>
+ <button id='allChk'>전체선택</button>
+ <table border ="1">
+  <tr>
+   <td><input type='checkbox'></td>
+   <td>Hongkildong1</td>
+  </tr>
+  <tr>
+   <td><input type='checkbox'></td>
+   <td>Hongkildong2</td>
+  </tr>
+  <tr>
+   <td><input type='checkbox'></td>
+   <td>Hongkildong3</td>
+  </tr>  
+ </table>
+ <script>  
+  document.querySelector('#selDel').addEventListener('click', delBtn);
+  	function delBtn(){
+	let allTr = document.querySelectorAll('tr');
+		allTr.forEach(function(tr) {
+			if (tr.firstElementChild.firstElementChild.checked == true) {
+				tr.remove();
+				}
+			})
+	};  
+  
+  document.querySelectorAll('#allChk').addEventListener('click', selAll);
+  	function selAll(){
+  	let all = document.querySelectorAll('input');
+  		all.forEach(function(box){
+  		if(box.checked == false){
+  		box.checked = true;
+  		};
+  	});
+  	
+ </script>
+</body>
+</html>

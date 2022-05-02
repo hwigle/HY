@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>promise.html</title>
+</head>
+
+<body>
+  <Script>
+    // ajax => XMLHttpRequest(); 비동기방식
+    // 중첩코드 -> 1 실행 뒤 2 실행 뒤 3;
+    // callback1(
+    //   callback2(
+    //     callback3();
+    //    );
+    //      );
+
+    setTimeout(function () {
+      console.log('func1');
+      setTimeout(function () {
+        console.log('func2');
+        setTimeout(function () {
+          console.log('func3')
+        }, 3000);
+      }, 20000);
+    }, 1000)
+
+    // promise 객체.()안은 매개값.
+    let val = 4;
+    let prom = new Promise(function (resolve, reject) {
+      setTimeout(function () { // 두번째 파라메터 이후에 함수를 실행
+        if (val > 0) {
+          resolve('success');
+          val -= 2;
+        } else
+          reject('error');
+      }, 2000);
+    });
+
+    prom
+      .then(function (result) {
+        console.log(result);
+        return new Promise(function (resolve, reject) {
+          setTimeout(function () {
+            if (val > 0) {
+              resolve('success');
+              val -= 2;
+            } else
+              reject('error');
+          }, 2000);
+        });
+      })
+      .then(function (result) {
+        console.log(result);
+        return new Promise(function (resolve, reject) {
+          setTimeout(function () {
+            if (val > 0) {
+              resolve('success');
+              val -= 2;
+            } else
+              reject('error');
+          }, 2000);
+        })
+      })
+      .catch(function (reject) {
+        console.log(reject);
+      });
+  </Script>
+</body>
+
+</html>
