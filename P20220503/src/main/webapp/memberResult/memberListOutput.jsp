@@ -23,8 +23,7 @@
 	</tbody>
    </table>
   </c:otherwise>
- </c:choose>
-	
+ </c:choose>	
 	<jsp:include page="home.jsp"></jsp:include>
 </body>
 </html>

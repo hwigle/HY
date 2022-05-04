@@ -14,6 +14,7 @@
 	이름:<input type="text" name="name"><br>
 	메일:<input type="email" name="email"><br>
 	<input type="submit" value="추가">
-	</form>
+	</form><br>
+	<jsp:include page="home.jsp"></jsp:include>
 </body>
 </html>
