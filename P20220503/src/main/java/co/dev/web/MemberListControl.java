@@ -13,7 +13,9 @@ public class MemberListControl implements Control {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberService service = new MemberService();
 		List<MemberVO> list = service.memberList();
+		
 		request.setAttribute("all", list);
+		
 		request.getRequestDispatcher("memberResult/memberListOutput.jsp").forward(request, response);
 	}
 }

@@ -9,7 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.dev.web.FrontController.MemberListJson;
+
 public class FrontController extends HttpServlet {
+	public class MemberListJson implements Control {
+
+		@Override
+		public void execute(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			// TODO Auto-generated method stub
+
+		}
+
+	}
+
 	HashMap<String, Control> list = null;
 	String charset= null;
 	@Override
@@ -21,6 +34,10 @@ public class FrontController extends HttpServlet {
 		list.put("/memberList.do", new MemberListControl());
 		list.put("/memberSearch.do", new MemberSearchControl());
 		list.put("/memberDelete.do", new MemberDeleteControl());
+		
+		// json 관련 등록.
+		list.put("/memberListJson.do", new MemberListJson());
+		list.put("/memberInsertJson.do", new MemberInsertJson());
 	}
 
 	@Override
