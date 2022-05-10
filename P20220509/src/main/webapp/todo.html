@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<ul id="myUL">
+		<li>Hit the gym</li>
+		<li class="checked">Pay bills</li>
+		<li>Meet George</li>
+		<li>Buy eggs</li>
+		<li>Read a book</li>
+		<li>Organize office</li>
+	</ul>
+
+	<script>
+		var todos = [{title:?, status:?},{}]; // result => result.json();
+		
+		//리스트 
+		var myNodelist = document.getElementByTagName("LI");
+		var i
+		for(i=0; i<myNodelist.length;i++){
+			var span = document.createElement("SPAN");
+			var txt = document.createTextNode("\u00D7");
+			span.className = "close";
+			span.appendChild(txt);
+			myNodelist[i].appendChild(span);		
+		}
+		//삭제
+		var close = document.getElementByClassName("close");
+		var i
+		for(i=0; i<myNodelist.length;i++){
+			close[i]onclick = function (){
+				// ajax호출
+				var div = this.parentElement.
+				div.style.display= "none";
+			}
+		}
+		//add a checked symbol when clicking on a list item
+		
+	</script>
+</body>
+</html>
