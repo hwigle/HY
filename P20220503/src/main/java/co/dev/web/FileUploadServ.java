@@ -41,7 +41,7 @@ public class FileUploadServ extends HttpServlet {
 		content=multi.getContentType("content");
 		String profile = multi.getOriginalFileName("profile");
 		String fileName = multi.getFilesystemName("profile");
-		System.out.println("title: " + title + ", content: " + content+", profile: " + profile +",file: " + fileName);
+		System.out.println("title: " + title + ", content: " + content+", profile: " + profile +", file: " + fileName);
 
 	}
 

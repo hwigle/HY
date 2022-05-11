@@ -19,8 +19,8 @@ public class MemberListJson implements Control {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/json;charset=UTF-8");
 
-		MemberService = new MemberService();
-		List<MemberVO> list = ervice.memberList();
+		MemberService service = new MemberService();
+		List<MemberVO> list = service.memberList();
 
 		Gson gson = new GsonBuilder().create();
 		response.getWriter().print(gson.toJson(list));
