@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>openApi.html</title>
+</head>
+<body>
+	
+	<input type="text" id="sido"><button id="findBtn">찾기</button>
+	<hr>
+	
+	<div id="show">
+	 <table border="1">
+	  <thead id="thead"></thead>
+	  <tbody id="tbody"></tbody>
+	 </table>
+	</div>
+		
+	<script>
+		console.log('start');
+		
+		let fields = ['id', 'sido', 'address', 'phoneNumber'];
+		
+		// this.= window객체
+		let obj = {
+		  name:'hong',
+		  age: 20,
+		  showInfo: function(){
+		    return this.name +',' +this.age;
+		  }
+		}
+		
+		function globalFnc(){
+		  console.log(this);
+		}
+		globalFnc();
+		
+		function init(){		
+			let url = `https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&returnType=JSON&serviceKey=q1ytysEzdCH
+			vmxrfR7T%2BZJ1XBlhlb%2FfAfIQS5ssOA9HJO6dUP9AfslDWYCjcvzIIRw3wzb2Iep%2FXVq4jMzILFg%3D%3D`
+			// 비동기처리 방식(Asynchronous Javascript And Xml)의 대표적인 방법 XMLHttp, 요청하고 결과를 가디리지 않고 계속 진행
+			let result = '';
+			let xhtp = new XMLHttpRequest();  
+			xhtp.open('get',url);
+			xhtp.send();
+			xhtp.onload = loadCallBack;
+			
+			let findBtn = document.getElementById("findBtn");
+			findBtn.addEventListener('click', findCallBack);
+			}
+			init(); // init 실행
+			function findCallBack(){
+			  console.log(this)
+			// 기능 구현. input.value 속성을 읽어와서 filterAry를 이용해 헤더와 바디를 생성
+			  let searchSido = document.getElementById("sido").value;
+			  
+			  let filterAry = result.data.filter(function(elem){
+			  	// return elem.sido.startsWith(searchSido);
+				// return elem.sido == searchSido;
+				 return elem.sido.indexOf(searchSido) !=-1;
+			  });
+			  
+			  makeBody(filterAry);  
+			  
+			  // 다음번에 입력하기 편하도록 입력값을 지움.
+			  document.getElementById('sido').value='';  
+			 } //end of findCallBack 
+							
+				
+		console.log('end');
+			
+		function loadCallBack(){
+			console.log('center');
+			result = JSON.parse(this.responseText);
+			console.log(result);
+			console.log("총건수: " + result.totalCount);
+			
+			console.log(result.data[0]);
+			
+			result.data.forEach(function(elem){
+				if(elem.sido =='서울특별시')
+					console.log(`id:${elem.id}, center:${elem.centerName}`);
+			});
+						
+			let filterAry = result.data.filter(function(elem){
+				return elem.sido == '대전광역시';
+			});
+			console.log(filterAry);
+			
+			// head 생성.
+			let head = document.getElementById('thead');
+			let tr = document.createElement('tr');
+			head.appendChild(tr);
+			fields.forEach(function(elem){
+				let td = document.createElement('th');
+				td.innerHTML= elem.toUpperCase();
+				tr.appendChild(td);				
+			});
+			// body 데이터 출력
+			let body = document.getElementById('tbody');
+			
+			filterAry.forEach(function(center){
+				let tr = document.createElement('tr');
+				body.appendChild(tr);
+				
+			fields.forEach(function(elem){
+				let td = document.createElement('td');
+				td.innerHTML = center[elem];
+				tr.appendChild(td);
+					
+				})
+			});	
+			
+			makeBody(filterAry);
+			
+		} // end of loadCallBack
+		
+		function makeBody(ary){
+			//body			
+			// 이미 생성된 조회정보가 있으면 삭제.
+			let body = document.getElementById('tbody');
+			let childTr = document.querySelectorAll('#tbody>tr');
+			childTr.forEach(function(elem){
+			 //elem.remove(); //찾아온 tr을 elem을 기준으로 삭제
+			 body.removeChild(elem);
+			})	
+				ary.forEach(function(center){
+					let tr = document.createElement('tr');
+					body.appendChild(tr);
+					
+				fields.forEach(function(elem){
+					let td = document.createElement('td');
+					// address 필드 일 경우에는 링크
+					if(elem == 'address'){
+					  let aTag = document.createElement('a');
+					  aTag.setAttribute('href',`daumApi.html?x=${center.lat}&y=${center.lng}`);
+					  aTag.setAttribute('target','_blank');
+					  aTag.innerHTML = center[elem];
+					  td.appendChild(aTag);						  
+					} else{
+					td.innerHTML = center[elem];
+					}
+					
+					tr.appendChild(td);					
+					});
+				});	
+			} // end of makeBody()
+	</script>
+</body>
+</html>
