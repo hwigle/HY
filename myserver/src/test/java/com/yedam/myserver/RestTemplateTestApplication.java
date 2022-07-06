@@ -1,7 +1,5 @@
 package com.yedam.myserver;
 
-
-
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -13,13 +11,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 public class RestTemplateTestApplication {
 
-      public static void main(String[] args) {
+	public static void main(String[] args) {
 
-         String url = "http://apis.data.go.kr/1471000/FoodNtrIrdntInfoService1/getFoodNtrItdntList1?ServiceKey=oJonnVXeZPAvAAYFbUy03E9vN6uvbQDKxN5FSfTxsS4JOMqj6BzMZJBHG8Le5k/hhHoaIGjJMHQTL45zel3y6A==&desc_kor=%EB%B0%94%EB%82%98%EB%82%98%EC%B9%A9&type=json";
-         RestTemplate restTemplate = new RestTemplate();         
-         JsonNode res = restTemplate.getForObject(url,JsonNode.class);      
-         System.out.println(res.get("body").get("items").get(0).get("NUTR_CONT1"));
-         
-      }
+		String url = "http://apis.data.go.kr/1471000/FoodNtrIrdntInfoService1/getFoodNtrItdntList1?ServiceKey=oJonnVXeZPAvAAYFbUy03E9vN6uvbQDKxN5FSfTxsS4JOMqj6BzMZJBHG8Le5k/hhHoaIGjJMHQTL45zel3y6A==&numOfRows=3&pageNo=1&type=json";
+		RestTemplate restTemplate = new RestTemplate();
+		JsonNode res = restTemplate.getForObject(url, JsonNode.class);
+		System.out.println(res.get("body").get("items").get(0).get("DESC_KOR"));
 
-   }
+	}
+
+}
