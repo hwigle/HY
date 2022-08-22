@@ -13,7 +13,7 @@ public class Work1 {
 		num2 = scn.nextInt();
 		if (num1 > num2) {
 			System.out.println("두 숫자의 차는 " + (num1 - num2) + "입니다.");
-		} else if (num2 > num1) {
+		} else {
 			System.out.println("두 숫자의 차는 " + (num2 - num1) + "입니다.");
 		}
 	}
