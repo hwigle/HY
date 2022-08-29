@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="DeptSpace">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap" />
+	<typeAlias alias="deptVO" type="egovframework.example.sample.service.DeptVO" />
+	
+	<!-- 부서 추가 -->
+	<insert id="deptDAO.InsertDept">
+		insert into dept(deptno,dname,loc)
+		values(#deptno#,#dname#,#loc#)
+	</insert>
+	
+	<!-- 부서 목록 -->
+	<select id="deptDAO.selectDeptList" resultClass="egovMap"><!-- resultClass = egov map = list -->
+		select * from dept
+	</select>
+	
+	<!-- 부서 상세 --> 
+	<select id="deptDAO.selectDeptDetail" resultClass="deptVO"><!--resultMap =결과를 담음  -->
+		select * from dept where deptno = #deptno#
+	</select>
+	
+	<!-- 부서 수정 -->
+	<update id="deptDAO.updateDept">
+	update dept set dname = #dname#, loc = #loc#  where deptno = #deptno#
+	</update>
+	
+	<!-- 부서 삭제 -->
+	<delete id="deptDAO.deleteDept">
+	delete from dept where deptno = #deptno#
+	</delete>
+</sqlMap>
