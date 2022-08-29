@@ -22,7 +22,7 @@ public class DeptController {
 		
 		return "dept/deptWrite";
 	}
-	// 부서 추가 
+	// 부서 추가  
 	@RequestMapping(value="/deptWriteSave.do")
 	public String InsertDept(DeptVO vo) throws Exception {
 		
