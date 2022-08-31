@@ -14,7 +14,7 @@
 	
 	<!-- 부서 목록 -->
 	<select id="deptDAO.selectDeptList" resultClass="egovMap"><!-- resultClass = egov map = list -->
-		select * from dept
+		select * from dept order by deptno 
 	</select>
 	
 	<!-- 부서 상세 --> 

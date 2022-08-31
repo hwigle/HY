@@ -11,8 +11,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table border="1">
-		<caption>부서목록</caption>
+<h1>부서목록</h1>
+	<table border="1">		
 		<tr>
 			<th>부서번호</th>
 			<th>부서이름</th>
