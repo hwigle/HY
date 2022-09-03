@@ -2,15 +2,15 @@ package egovframework.example.sample.service;
 
 public class CodeVO {
 	
-	private int number;
+	private int code;
 	private int gid;
 	private String name;
 	
-	public int getNumber() {
-		return number;
+	public int getCode() {
+		return code;
 	}
-	public void setNumber(int number) {
-		this.number = number;
+	public void setCode(int number) {
+		this.code = number;
 	}
 	public int getGid() {
 		return gid;
