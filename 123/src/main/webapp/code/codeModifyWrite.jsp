@@ -34,6 +34,7 @@ function fn_submit() {
 
 function fn_cancel(){
 	location = "codeList.do"
+	alert("수정이  완료되었습니다.");
 }
 </script>
 <body>
@@ -57,7 +58,7 @@ function fn_cancel(){
 				<th colspan="2">
 					<button type="submit" onclick="fn_submit(); return false;">저장</button>
 					
-					<button type="button" onclick="fn_cancel(); return false;">취소</button>
+					<button type="button" onclick="fn_cancel();">취소</button>
 				</th>
 			</tr>
 		</table>

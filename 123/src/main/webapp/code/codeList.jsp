@@ -67,7 +67,7 @@ th, td {
 			</tr>
 			<c:set var="cnt" value="${cnt+1 }" />
 		</c:forEach>
-	</table>
+	</table><br>
 	<button type="button" onclick="location='codeWrite.do'">등록</button>
 </body>
 </html>
