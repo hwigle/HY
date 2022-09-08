@@ -31,4 +31,14 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.selectBoardTotal(vo);
 	}
 
+	@Override
+	public BoardVO selectBoardDetail(int unq) throws Exception {
+		return boardDAO.selectBoardDetail(unq);
+	}
+
+	@Override
+	public int updateBoardHits(int unq) throws Exception {
+		return boardDAO.updateBoardHits(unq);
+	}
+
 }

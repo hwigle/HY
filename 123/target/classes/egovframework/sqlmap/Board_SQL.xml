@@ -5,7 +5,7 @@
 
 	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap" />
 	<typeAlias alias="boardVO" type="main.service.BoardVO" />
-	
+	<!-- 게시글 등록 -->
 	<insert id="boardDAO.insertBoard">
 	insert into board(unq,title,pass,name,content,hits,rdate)
 	values(
@@ -18,9 +18,9 @@
 			,sysdate)
 	
 	</insert>
-	
+	<!-- 게시글 목록 -->
 	<select id="boardDAO.selectBoardList" resultClass="egovMap">
-	<![CDATA[
+	
 	select b.* 
 	from(
 	     select rownum rn
@@ -32,13 +32,39 @@
 	           , hits
 	           , to_char(rdate, 'yyyy-mm-dd') rdate
 	         from   board    
+	         	<isNotNull property="searchGubun">
+					<isNotNull property="searchText">
+						WHERE $searchGubun$ like '%$searchText$%'	
+					</isNotNull>
+				</isNotNull>
 	         order by unq desc) a) b
-	where rn >= #startIndex# and rn <= #endIndex#
-	]]>
-	</select>
+	where rn >= #startIndex# and rn<![CDATA[ <=]]> #endIndex#
 	
+	</select>
+	<!-- 데이터 총 개수 -->
 	<select id="boardDAO.selectBoardTotal" resultClass="java.lang.Integer">
-	select count(*) total from board
+	select count(*) total 
+	from board
+				<isNotNull property="searchGubun">
+					<isNotNull property="searchText">
+						WHERE $searchGubun$ like '%$searchText$%'	
+					</isNotNull>
+				</isNotNull>
 	</select>
 	
+	<select id="boardDAO.selectBoardDetail" resultClass="boardVO">
+		 select unq
+	         , title
+	         , name
+	         , content
+	         , hits
+	         , to_char(rdate, 'yyyy-mm-dd') rdate
+	 	from board where unq= #unq#
+	</select>
+	
+	<update id="boardDAO.updateBoardHits">
+	update board
+	set hits =hits+1
+	where unq = #unq#
+	</update>	
 </sqlMap>

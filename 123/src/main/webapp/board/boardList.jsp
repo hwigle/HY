@@ -36,6 +36,7 @@ th, td {
 	width: 98%;
 	height: 70px;
 }
+
 </style>
 </head>
 <body>
@@ -51,22 +52,37 @@ th, td {
 			<th width="15%">등록일</th>
 			<th width="15%">조회수</th>
 		</tr>
-		<c:set var="cnt" value="1" />
+
+		<c:set var="cnt" value="${rowNumber }" />
+
 		<c:forEach var="list" items="${list}">
+
 			<tr align="center">
-				<td>${list.unq}</td>
-				<td align="left">${list.title}</td>
+				<td>${cnt}</td>
+				<td align="left">
+					<a href="boardDetail.do?unq=${list.unq }">${list.title}</a>
+				</td>
 				<td>${list.name}</td>
 				<td>${list.rdate}</td>
 				<td>${list.hits}</td>
 			</tr>
-			<c:set var="cnt" value="${cnt+1}" />
+			<c:set var="cnt" value="${cnt-1}" />
 		</c:forEach>
 	</table>
 	<div style="width: 600px; margin-top: 5px; text-align: center">
 		<c:forEach var="i" begin="1" end="${totalPage}">
-			<a href="boardList.do?viewPage=${i}">${i}</a>	
+			<a href="boardList.do?viewPage=${i}">${i}</a>
 		</c:forEach>
+	</div>
+	<div class="div3">
+		<form name="searchFrm" method="post" action="boardList.do">
+			<select name="searchGubun" id="searchGubun">
+				<option value="title">제목</option>
+				<option value="name">글쓴이</option>
+				<option value="content">내용</option>
+			</select> <input type="text" name="searchText" id="searchText">
+			<button type="submit">검색</button>
+		</form>
 	</div>
 	<div style="width: 600px; margin-top: 5px; text-align: right">
 		<button type="button" onclick="location='boardWrite.do'">글쓰기</button>
