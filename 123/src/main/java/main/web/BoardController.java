@@ -58,8 +58,8 @@ public class BoardController {
 		int startIndex = (viewPage - 1) * unit + 1;
 		int endIndex = startIndex + (unit - 1);
 
-		int startRowNo = total - (viewPage-1)*unit;
-		System.out.println("행번호 = "+startRowNo);
+		int startRowNo = total - (viewPage - 1) * unit;
+		System.out.println("행번호 = " + startRowNo);
 		vo.setStartIndex(startIndex);
 		vo.setEndIndex(endIndex);
 
@@ -72,22 +72,71 @@ public class BoardController {
 
 		return "board/boardList";
 	}
-	
+
 	@RequestMapping("/boardDetail.do")
 	public String boardDetail(BoardVO vo, ModelMap model) throws Exception {
-		
+
 		// 조회수 증가
 		service.updateBoardHits(vo.getUnq());
-		
+
 		// 상세보기
 		BoardVO detail = service.selectBoardDetail(vo.getUnq());
-		
+
 		// 내용 줄바꿈
 		String content = detail.getContent(); // \n
-		detail.setContent(content.replace("\n", "<br>")); 
-		
+		detail.setContent(content.replace("\n", "<br>"));
+
 		model.addAttribute("detail", detail);
-		
+
 		return "board/boardDetail";
+	}
+
+	@RequestMapping("/boardModify.do")
+	public String boardModify(BoardVO vo, ModelMap model) throws Exception {
+		BoardVO modify = service.selectBoardDetail(vo.getUnq());
+		model.addAttribute("modify", modify);
+		return "board/boardModify";
+	}
+
+	@RequestMapping("/boardModifySave.do")
+	@ResponseBody
+	public String boardModifySave(BoardVO vo) throws Exception {
+
+		int result = 0;
+		
+		int count = service.selectBoardPass(vo);
+		if (count == 1) {
+			result = service.updateBoard(vo);
+		} else {
+			result = -1;
+		}
+
+		return result+"";
+	}
+	
+	@RequestMapping("/passWrite.do")
+	public String passWrite(int unq, ModelMap model){
+		
+		model.addAttribute("unq", unq);
+				
+		return"board/passWrite";
+	}
+		
+	@RequestMapping("/boardDelete.do")
+	@ResponseBody
+	public String deleteBoard(BoardVO vo) throws Exception {
+		
+		int result = 0;
+		/*
+		 * 암호 일치 검사 (count = 1; (일치함) // count = 0; (일치하지 않음)
+		 */
+		int count = service.selectBoardPass(vo); 
+
+		if( count == 1 ) {
+			result = service.deleteBoard(vo);  
+		} else if( count == 0 ) {
+			result = -1;
+		}
+		return result+"";
 	}
 }

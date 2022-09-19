@@ -121,7 +121,7 @@ th, td {
 			</tr>
 			<tr>
 				<th colspan="2">
-					<button type="submit" onclick="fn_submit(); return false;">저장</button>
+					<button type="submit" onclick="fn_submit(); return false;">수정</button>
 					<button type="button">취소</button>
 				</th>
 			</tr>
