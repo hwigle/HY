@@ -51,15 +51,15 @@ public class MemberController {
 	}
 	
 	// 회원가입 아이디 중복체크
-	@RequestMapping(value="/memberIdChk", method= RequestMethod.POST)
+	@RequestMapping(value = "/memberIdChk", method = RequestMethod.POST)
 	@ResponseBody
-	public String memberIdChkPOST(String memberId) throws Exception{
-		
+	public String memberIdChkPOST(String memberId) throws Exception {
+
 		logger.info("memberIdChk() 진입");
-		
+
 		int result = service.idCheck(memberId);
-		
-		if(result !=0) {
+
+		if (result != 0) {
 			return "fail"; // 중복 아이디 존재
 		} else {
 			return "success"; // 중복 아이디 없음
