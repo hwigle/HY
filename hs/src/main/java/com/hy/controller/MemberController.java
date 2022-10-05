@@ -109,13 +109,21 @@ public class MemberController {
 	}
 
 	// 로그인
-	@RequestMapping(value="login", method = RequestMethod.POST)
+	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
         
 		HttpSession session = request.getSession();
 		
-		MemberVO login = service.memberLogin(member);
+		MemberVO loginVO = service.memberLogin(member);
+		
+		if(loginVO == null) {
+			int result = 0;
+			rttr.addFlashAttribute("result",result);
+			return "redirect:/member/login";
+		}
         
-        return null;
+		session.setAttribute("member", loginVO);
+		
+        return "redirect:/main";
     }
 }
