@@ -13,8 +13,8 @@ public class BookController {
 
 	// 메인 페이지 이동
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public void mainPageGet() {
-		logger.info("메인 페이지 진입");
-	}
+	public String mainPageGet() {
+		return "main";
+	} 
 
 }

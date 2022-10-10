@@ -40,7 +40,7 @@
 <script type="text/javascript">
 /* 로그인 버튼 클릭 메서드 */
 $(".login_button").click(function(){
-	$("#login_form").attr("action","/member/login");
+	$("#login_form").attr("action","/member/login.do");
 	$("#login_form").submit();
 });
  
