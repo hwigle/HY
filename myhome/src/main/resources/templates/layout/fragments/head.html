@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Head -->
+<th:block th:fragment="headFragment">
+	<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<header class="header">
+	<div class="header__top">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8"></div>
+				<div class="col-md-4">
+					<div class="header__top__right">
+						<div class="header__top__right__auth" style="font-family: 'Jua';">
+							<a href="#" style="float: right; margin: 0 0 0 10px"><i
+								class="fa fa-user"></i>Login</a> <a href="#"
+								style="float: right; margin: 0 10px">아이디 찾기</a> <a href="#"
+								style="float: right; margin: 0 10px">비밀번호 찾기</a> <a href="#"
+								style="float: right; margin: 0 10px">회원 가입</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="header__logo">
+					<a href="./index.html"><img src="/bootstrap/img/로고.PNG" alt=""></a>
+				</div>
+			</div>
+			<div class="col-lg-9">
+				<nav class="header__menu">
+					<div class="text-right">
+						<ul>
+							<!-- <li class="active"><a href="./index.html">식단일지</a></li> -->
+							<li><a href="./sicmain.html">식단일지</a></li>
+							<li><a href="./challenge.html">챌린지</a>
+								<ul class="header__menu__dropdown">
+									<li><a href="./challenge.html">챌린지 목록</a></li>
+									<li><a href="./challenging.html">진행중인 챌린지</a></li>
+									<li><a href="./challengeEnd.html">완료한 챌린지</a></li>
+								</ul></li>
+							<li><a href="./food.html">음식</a></li>
+							<li><a href="./shoping-cart(게시판).html">게시판</a></li>
+							<li><a href="./contact.html">고객센터</a>
+								<ul class="header__menu__dropdown">
+									<li><a href="./shop-details.html">고객센터</a></li>
+									<li><a href="./shoping-cart.html">1:1 문의</a></li>
+									<li><a href="./checkout.html">FAQ</a></li>
+									<li><a href="./blog-details.html">공지사항</a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+</header>
+	</head>
+</th:block>
+</html>
